@@ -1,9 +1,14 @@
 package br.com.jsfspringboot.jsfbean;
 
 import java.util.List;
+import java.util.Map;
+
+import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import br.com.jsfspringboot.dominio.Colaborador;
@@ -27,7 +32,24 @@ public class ColaboradorBean {
 	}
 	
 	public List<Colaborador> getListColaborador(){
-		return repository.findAllByOrderByIdDesc();
+		FacesContext context = FacesContext.getCurrentInstance();
+        Map<String, String> paramMap = context.getExternalContext().getRequestParameterMap();
+        
+        Integer page = 0;
+        Integer size = 3;
+        
+        if(paramMap.get("page") != null) {        	
+        	page = Integer.parseInt( paramMap.get("page"));
+        }
+        if(paramMap.get("page") != null) {  
+        	size = Integer.parseInt( paramMap.get("size"));
+        }
+        
+        System.out.println(repository.count());
+        
+		Pageable pageable = PageRequest.of(page, size);
+		return repository.findAllByOrderByIdDesc(pageable);
+//		return repository.findAllByOrderByIdDesc();
 //		return repository.findAll();
 		
 	}

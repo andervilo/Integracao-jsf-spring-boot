@@ -65,13 +65,13 @@
 			<groupId>org.glassfish</groupId>
 			<artifactId>javax.faces</artifactId>
 			<version>2.2.9</version>
-			<scope>provided</scope>
+<!-- 			<scope>provided</scope> -->
 		</dependency>
-<!-- 		<dependency> -->
-<!-- 		   <groupId>org.glassfish.web</groupId> -->
-<!-- 		   <artifactId>el-impl</artifactId> -->
-<!-- 		   <version>2.2</version> -->
-<!-- 		</dependency>	 -->
+		<dependency>
+		   <groupId>org.glassfish.web</groupId>
+		   <artifactId>el-impl</artifactId>
+		   <version>2.2</version>
+		</dependency>	
 		
 <!-- 		<dependency> -->
 <!-- 			<groupId>javax.servlet</groupId> -->
@@ -98,10 +98,10 @@
 			<version>4.5.0</version>
 		</dependency>
 		<!-- Descomentar esta dependência se for implantar no Tomcat -->
-<!-- 		<dependency> -->
-<!-- 		    <groupId>org.apache.tomcat.embed</groupId> -->
-<!-- 		    <artifactId>tomcat-embed-jasper</artifactId> -->
-<!-- 		</dependency> -->
+		<dependency>
+		    <groupId>org.apache.tomcat.embed</groupId>
+		    <artifactId>tomcat-embed-jasper</artifactId>
+		</dependency>
 		
 	</dependencies>
 
