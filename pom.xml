@@ -34,16 +34,6 @@
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.springframework</groupId> -->
-<!-- 			<artifactId>spring-webmvc</artifactId> -->
-<!-- 			<version>4.3.3.RELEASE</version> -->
-<!-- 		</dependency> -->
-<!-- 			<dependency> -->
-<!-- 			    <groupId>org.springframework</groupId> -->
-<!-- 			    <artifactId>spring-core</artifactId> -->
-<!-- 			    <version>5.1.6.RELEASE</version> -->
-<!-- 			</dependency> -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -60,33 +50,35 @@
 			<scope>test</scope>
 		</dependency>
 		
-		<dependency>
-            <groupId>com.sun.faces</groupId>
-            <artifactId>jsf-api</artifactId>
-            <version>2.2.6</version>
-        </dependency>
-        <dependency>
-            <groupId>com.sun.faces</groupId>
-            <artifactId>jsf-impl</artifactId>
-            <version>2.2.6</version>
-        </dependency>
+<!-- 		<dependency> -->
+<!--             <groupId>com.sun.faces</groupId> -->
+<!--             <artifactId>jsf-api</artifactId> -->
+<!--             <version>2.2.6</version> -->
+<!--         </dependency> -->
+<!--         <dependency> -->
+<!--             <groupId>com.sun.faces</groupId> -->
+<!--             <artifactId>jsf-impl</artifactId> -->
+<!--             <version>2.2.6</version> -->
+<!--         </dependency> -->
 
 		<dependency>
 			<groupId>org.glassfish</groupId>
 			<artifactId>javax.faces</artifactId>
-			<version>2.2.6</version>
-		</dependency>
-		<dependency>
-		   <groupId>org.glassfish.web</groupId>
-		   <artifactId>el-impl</artifactId>
-		   <version>2.2</version>
-		</dependency>	
-		
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
+			<version>2.2.9</version>
 			<scope>provided</scope>
-		</dependency>	
+		</dependency>
+<!-- 		<dependency> -->
+<!-- 		   <groupId>org.glassfish.web</groupId> -->
+<!-- 		   <artifactId>el-impl</artifactId> -->
+<!-- 		   <version>2.2</version> -->
+<!-- 		</dependency>	 -->
+		
+<!-- 		<dependency> -->
+<!-- 			<groupId>javax.servlet</groupId> -->
+<!-- 			<artifactId>javax.servlet-api</artifactId> -->
+<!-- 			<version>3.1.0</version> -->
+<!-- 			<scope>provided</scope> -->
+<!-- 		</dependency> -->
 
 		<dependency>
 			<groupId>org.webjars</groupId>
@@ -106,10 +98,10 @@
 			<version>4.5.0</version>
 		</dependency>
 		
-		<dependency>
-		    <groupId>org.apache.tomcat.embed</groupId>
-		    <artifactId>tomcat-embed-jasper</artifactId>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 		    <groupId>org.apache.tomcat.embed</groupId> -->
+<!-- 		    <artifactId>tomcat-embed-jasper</artifactId> -->
+<!-- 		</dependency> -->
 		
 	</dependencies>
 
@@ -135,17 +127,17 @@
 <!-- 				<version>2.19.1</version> -->
 	        </plugin>
 			
-<!-- 			<plugin> -->
-<!-- 				<groupId>org.eclipse.jetty</groupId> -->
-<!-- 				<artifactId>jetty-maven-plugin</artifactId> -->
-<!-- 				<version>9.2.11.v20150529</version> -->
-<!-- 				<configuration> -->
-<!-- 					<scanIntervalSeconds>5</scanIntervalSeconds> -->
-<!-- 					<webApp> -->
-<!-- 						<contextPath>/jsfspringboot</contextPath> -->
-<!-- 					</webApp> -->
-<!-- 				</configuration> -->
-<!-- 			</plugin> -->
+			<plugin>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>9.2.11.v20150529</version>
+				<configuration>
+					<scanIntervalSeconds>5</scanIntervalSeconds>
+					<webApp>
+						<contextPath>/jsfspringboot</contextPath>
+					</webApp>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
