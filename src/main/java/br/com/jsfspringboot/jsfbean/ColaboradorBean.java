@@ -27,7 +27,8 @@ public class ColaboradorBean {
 	}
 	
 	public List<Colaborador> getListColaborador(){
-		return repository.findAll();
+		return repository.findAllByOrderByIdDesc();
+//		return repository.findAll();
 		
 	}
 	
