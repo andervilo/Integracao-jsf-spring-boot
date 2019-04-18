@@ -1,5 +1,6 @@
 package br.com.jsfspringboot;
 
+import javax.annotation.PostConstruct;
 import javax.faces.webapp.FacesServlet;
 
 import org.springframework.boot.SpringApplication;
@@ -20,5 +21,7 @@ public class JsfSpringBootApplication {
 		ServletRegistrationBean<FacesServlet> servletRegistrationBean = new ServletRegistrationBean<FacesServlet>(servlet, "*.jsf");
 		return servletRegistrationBean;
 	}
+	
+
 
 }

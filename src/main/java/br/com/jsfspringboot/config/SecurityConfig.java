@@ -61,7 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		list.add("TESTER");
 		list.add("CODER");
 		
-		System.out.println(list.toArray());
+		//System.out.println(list.toArray());
 	}
 	
 	@Bean
