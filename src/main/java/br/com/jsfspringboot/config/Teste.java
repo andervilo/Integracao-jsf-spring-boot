@@ -5,7 +5,7 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
-import br.com.jsfspringboot.dominio.User;
+import br.com.jsfspringboot.enums.PermissoesEnum;
 import br.com.jsfspringboot.repository.UserRepository;
 
 //Executar ações durante o boot
@@ -18,8 +18,8 @@ public class Teste {
 	
 	@PostConstruct
 	public void postConstruct() {
-		for(User user : repo.findAll()) {
-			System.out.println(user.getName()+"-"+user.getRole());			
+		for(PermissoesEnum p : PermissoesEnum.listaPermissoes()) {
+			System.out.println(p.getValor()+" - "+p.getDescricao()+" - "+p.getUrl());			
 		}
 	}
 	
