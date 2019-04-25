@@ -1,0 +1,91 @@
+<f:view xmlns="http://www.w3c.org/1999/xhtml"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+       	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<h:outputStylesheet library="webjars"
+		name="bootstrap/3.2.0/css/bootstrap.min.css" />
+	<h:outputStylesheet library="webjars"
+		name="bootstrap/3.2.0/css/bootstrap-theme.min.css" />
+	<h:outputStylesheet library="webjars"
+		name="font-awesome/4.5.0/css/font-awesome-jsf.css" />
+
+	<h:outputScript library="webjars" name="jquery/2.1.1/jquery.min.js" />
+	<h:outputScript library="webjars"
+		name="bootstrap/3.2.0/js/bootstrap.min.js" /> <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+        <title>TO-DO application</title>
+    </h:head>
+    <h:body>
+    <div class="container">
+			<div>
+				<div>Novo Colaborador:</div>
+				<h:form id="form">
+					<h:panelGroup layout="block" styleClass="form-group">
+						<h:outputLabel for="nome" value="Nome:" styleClass="control-label" />
+						<h:inputText id="nome" value="#{colaboradorBean.VO.nome}" styleClass="form-control"/>
+					</h:panelGroup>
+
+					<h:panelGroup layout="block" styleClass="form-group">
+						<h:outputLabel for="celular" value="Celular: " styleClass="control-label"/>
+						<h:inputText id="celular" value="#{colaboradorBean.VO.celular}" styleClass="form-control"/>
+					</h:panelGroup>
+
+					<h:panelGroup layout="block" styleClass="form-group">
+						<h:outputLabel for="email" value="E-mail: " styleClass="control-label" />
+						<h:inputText id="email" value="#{colaboradorBean.VO.email}" styleClass="form-control"/>
+					</h:panelGroup>
+
+					<h:commandButton value="Salvar" action="#{colaboradorBean.save}"
+						styleClass="btn btn-primary btn-large" />
+				</h:form>
+			</div>
+			<div>
+            <div>
+                
+            </div>
+            <h:form>
+            <h:dataTable styleClass="table" id="colabTable" value="#{colaboradorBean.listColaborador}" var="item">
+            	<h:column>
+                    <f:facet name="header"> #ID</f:facet>
+                    #{item.id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header"> Nome</f:facet>
+                    #{item.nome}
+                </h:column>
+                <h:column>
+                    <f:facet name="header"> Celular</f:facet>
+                    #{item.celular}
+                </h:column>
+                <h:column>
+                    <f:facet name="header"> E-mail</f:facet>
+                    #{item.email}
+                </h:column>
+
+					<h:column>
+						<f:facet name="header"></f:facet>
+						<h:commandLink value="Delete"
+							onclick="if (! confirm('Deseja excluir este registro?')) return false"
+							styleClass="btn btn-danger btn-large" 
+							action="#{colaboradorBean.delete}">
+							<f:setPropertyActionListener target="#{colaboradorBean.VO}"
+								value="#{item}" />
+						</h:commandLink>
+					</h:column>
+					<h:column>	
+						<h:commandButton value="Editar"
+							styleClass="btn btn-warning btn-large" 
+							action="#{colaboradorBean.editar(item)}">
+							
+						</h:commandButton>
+					</h:column>
+
+				</h:dataTable>
+            </h:form>
+        </div>
+       </div> 
+    </h:body>
+</f:view>

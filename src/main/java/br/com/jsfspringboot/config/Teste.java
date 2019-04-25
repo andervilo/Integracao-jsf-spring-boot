@@ -10,10 +10,10 @@ import br.com.jsfspringboot.repository.UserRepository;
 
 //Executar ações durante o boot
 
-@Configuration
+//@Configuration
 public class Teste {
 	
-	@Autowired
+	//@Autowired
 	private UserRepository repo;
 	
 //	@PostConstruct

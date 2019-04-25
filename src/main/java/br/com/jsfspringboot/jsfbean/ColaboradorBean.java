@@ -7,6 +7,7 @@ import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
@@ -22,6 +23,10 @@ public class ColaboradorBean {
 	private ColaboradorRepository repository;
 	
 	private Colaborador VO = new Colaborador();
+	
+	private Integer page = 0;
+	private Integer size = 10;
+	private List<Colaborador> colabList;
 
 	public Colaborador getVO() {
 		return VO;
@@ -31,31 +36,45 @@ public class ColaboradorBean {
 		VO = vO;
 	}
 	
-	public List<Colaborador> getListColaborador(){
+	public Integer getPage() {
+		return page;
+	}
+
+	public void setPage(Integer page) {
+		this.page = page;
+	}
+
+	public Integer getSize() {
+		return size;
+	}
+
+	public void setSize(Integer size) {
+		this.size = size;
+	}
+
+	public List<Colaborador> getColabList() {
+		listColaborador();
+		return colabList;
+	}
+
+	public void setColabList(List<Colaborador> colabList) {
+		this.colabList = colabList;
+	}
+	
+	public void teste() {
+		System.out.println("page: "+page+" size: "+size);
+	}
+
+	public void listColaborador(){
 		FacesContext context = FacesContext.getCurrentInstance();
         Map<String, String> paramMap = context.getExternalContext().getRequestParameterMap();
         
-        Integer page = 0;
-        Integer size = 3;
-        
-        if(paramMap.get("page") != null) {        	
-        	page = Integer.parseInt( paramMap.get("page"));
-        }
-        if(paramMap.get("page") != null) {  
-        	size = Integer.parseInt( paramMap.get("size"));
-        }
-        
-        System.out.println(repository.count());
+        System.out.println("page: "+page+" size: "+size);
         
 		Pageable pageable = PageRequest.of(page, size);
+		Page<Colaborador> consulta = repository.findAll(pageable);
 		
-		
-		repository.findAll(pageable).forEach(c -> System.out.println("Nome: "+c.getNome()));
-		
-		return repository.findAllByOrderByIdDesc(pageable);
-//		return repository.findAllByOrderByIdDesc();
-//		return repository.findAll();
-		
+		setColabList(consulta.getContent());
 	}
 	
 	public void save() {
