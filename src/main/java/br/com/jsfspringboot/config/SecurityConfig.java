@@ -15,6 +15,7 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import br.com.jsfspringboot.dominio.User;
+import br.com.jsfspringboot.enums.PermissoesEnum;
 import br.com.jsfspringboot.repository.UserRepository;
 
 @Configuration
@@ -49,6 +50,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		
+		sincronizarPermissoes();
+		System.out.println("2");
 		for(User user : repo.findAll()) {
 			auth.inMemoryAuthentication().withUser(user.getName()).password(user.getSenha()).roles(user.getRole());
 		}
@@ -67,6 +70,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return NoOpPasswordEncoder.getInstance();
+	}
+	
+	@Bean
+	public void sincronizarPermissoes() {
+		System.out.println("1");
+		for(PermissoesEnum p : PermissoesEnum.listaPermissoes()) {
+			System.out.println(p.getValor()+" - "+p.getDescricao()+" - "+p.getUrl());			
+		}
 	}
 	
 }

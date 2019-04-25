@@ -48,6 +48,10 @@ public class ColaboradorBean {
         System.out.println(repository.count());
         
 		Pageable pageable = PageRequest.of(page, size);
+		
+		
+		repository.findAll(pageable).forEach(c -> System.out.println("Nome: "+c.getNome()));
+		
 		return repository.findAllByOrderByIdDesc(pageable);
 //		return repository.findAllByOrderByIdDesc();
 //		return repository.findAll();

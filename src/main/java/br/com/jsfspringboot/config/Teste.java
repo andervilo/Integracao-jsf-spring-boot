@@ -16,11 +16,11 @@ public class Teste {
 	@Autowired
 	private UserRepository repo;
 	
-	@PostConstruct
-	public void postConstruct() {
-		for(PermissoesEnum p : PermissoesEnum.listaPermissoes()) {
-			System.out.println(p.getValor()+" - "+p.getDescricao()+" - "+p.getUrl());			
-		}
-	}
+//	@PostConstruct
+//	public void postConstruct() {
+//		for(PermissoesEnum p : PermissoesEnum.listaPermissoes()) {
+//			System.out.println(p.getValor()+" - "+p.getDescricao()+" - "+p.getUrl());			
+//		}
+//	}
 	
 }
