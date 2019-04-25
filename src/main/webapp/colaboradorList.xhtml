@@ -31,31 +31,33 @@
 				<div>
 					Novo Colaborador: <STRONG><a href="/logout">Sair</a></STRONG>
 				</div>
-
-				<h:form id="form">
-					<h:panelGroup layout="block" styleClass="form-group">
-						<h:outputLabel for="nome" value="Nome:" styleClass="control-label" />
-						<h:inputText id="nome" value="#{colaboradorBean.VO.nome}"
-							styleClass="form-control" />
-					</h:panelGroup>
-
-					<h:panelGroup layout="block" styleClass="form-group">
-						<h:outputLabel for="celular" value="Celular: "
-							styleClass="control-label" />
-						<h:inputText id="celular" value="#{colaboradorBean.VO.celular}"
-							styleClass="form-control" />
-					</h:panelGroup>
-
-					<h:panelGroup layout="block" styleClass="form-group">
-						<h:outputLabel for="email" value="E-mail: "
-							styleClass="control-label" />
-						<h:inputText id="email" value="#{colaboradorBean.VO.email}"
-							styleClass="form-control" />
-					</h:panelGroup>
-
-					<h:commandButton value="Salvar" action="#{colaboradorBean.save}"
-						styleClass="btn btn-primary btn-large" />
-				</h:form>
+				
+					<h:form id="form">
+						<div class="row">
+							<h:panelGroup layout="block" styleClass="form-group col-md-4">
+								<h:outputLabel for="nome" value="Nome:" styleClass="control-label" />
+								<h:inputText id="nome" value="#{colaboradorBean.VO.nome}"
+									styleClass="form-control" />
+							</h:panelGroup>
+		
+							<h:panelGroup layout="block" styleClass="form-group col-md-4">
+								<h:outputLabel for="celular" value="Celular: "
+									styleClass="control-label" />
+								<h:inputText id="celular" value="#{colaboradorBean.VO.celular}"
+									styleClass="form-control" />
+							</h:panelGroup>
+		
+							<h:panelGroup layout="block" styleClass="form-group col-md-4">
+								<h:outputLabel for="email" value="E-mail: "
+									styleClass="control-label" />
+								<h:inputText id="email" value="#{colaboradorBean.VO.email}"
+									styleClass="form-control" />
+							</h:panelGroup>
+						</div>
+						<h:commandButton value="Salvar" action="#{colaboradorBean.save}"
+							styleClass="btn btn-primary btn-large" />
+					</h:form>
+				
 			</div>
 			<div>
 				<div></div>

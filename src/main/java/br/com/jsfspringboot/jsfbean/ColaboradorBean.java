@@ -10,6 +10,8 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Component;
 
 import br.com.jsfspringboot.dominio.Colaborador;
@@ -25,7 +27,7 @@ public class ColaboradorBean {
 	private Colaborador VO = new Colaborador();
 	
 	private Integer page = 0;
-	private Integer size = 10;
+	private Integer size = 5;
 	private List<Colaborador> colabList;
 
 	public Colaborador getVO() {
@@ -71,7 +73,7 @@ public class ColaboradorBean {
         
         System.out.println("page: "+page+" size: "+size);
         
-		Pageable pageable = PageRequest.of(page, size);
+		Pageable pageable = PageRequest.of(page, size, new Sort(Direction.DESC, "id"));
 		Page<Colaborador> consulta = repository.findAll(pageable);
 		
 		setColabList(consulta.getContent());

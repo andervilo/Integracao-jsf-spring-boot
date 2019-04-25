@@ -30,8 +30,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().antMatchers("/index.jsf").permitAll();
 		http.authorizeRequests()
-		.antMatchers(HttpMethod.GET,"//colaboradorList.jsf").access("hasRole('ROLE_ADMIN')")
-		.antMatchers(HttpMethod.POST,"//colaboradorList.jsf").access("hasRole('ROLE_ADMIN')");
+		.antMatchers(HttpMethod.GET,"//colaboradorList.jsf").access("hasRole('ROLE_ADMIN')");
+		//.antMatchers(HttpMethod.POST,"//colaboradorList.jsf").access("hasRole('ROLE_ADMIN')");
 		http.formLogin().permitAll().defaultSuccessUrl("/index.jsf");	
 		http.logout().permitAll().logoutSuccessUrl("/login");
 		http.csrf().disable();
