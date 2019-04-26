@@ -121,6 +121,27 @@
 
 					</h:dataTable>
 				</h:form>
+				<div class="row" >				
+					<div class="col-md-2">
+						<h:form>
+							<h:commandButton value="Anterior" styleClass="btn btn-primary btn-sm">
+								<f:ajax listener="#{colaboradorBean.anterior}" execute="@this" render="tabela:colabTable paginacao" event="click"/>
+							</h:commandButton>
+						</h:form>
+					</div>
+					<div class="col-md-1 text-center align-middle">
+						<h:form id="paginacao">
+							#{colaboradorBean.paginaAtual}/#{colaboradorBean.colabPage.totalPages}
+						</h:form>
+					</div>
+					<div class="col-md-2">
+						<h:form>
+							<h:commandButton value="Próximo" styleClass="btn btn-primary btn-sm">
+								<f:ajax listener="#{colaboradorBean.proximo}" execute="@this" render="tabela:colabTable paginacao" event="click"/>
+							</h:commandButton>
+						</h:form>
+					</div>
+				</div>	
 			</div>
 		</div>
 	</h:body>

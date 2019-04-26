@@ -3,6 +3,7 @@ package br.com.jsfspringboot.jsfbean;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,7 @@ public class ColaboradorBean {
 	private Integer page = 0;
 	private Integer size = 5;
 	private List<Colaborador> colabList;
+	Page<Colaborador> colabPage;
 
 	public Colaborador getVO() {
 		return VO;
@@ -55,7 +57,6 @@ public class ColaboradorBean {
 	}
 
 	public List<Colaborador> getColabList() {
-		listColaborador();
 		return colabList;
 	}
 
@@ -65,31 +66,72 @@ public class ColaboradorBean {
 	
 	public void teste() {
 		System.out.println("page: "+page+" size: "+size);
+	}	
+
+	public Page<Colaborador> getColabPage() {
+		return colabPage;
+	}
+	
+	
+
+	public void setColabPage(Page<Colaborador> colabPage) {
+		this.colabPage = colabPage;
 	}
 
-	public void listColaborador(){
-		FacesContext context = FacesContext.getCurrentInstance();
-        Map<String, String> paramMap = context.getExternalContext().getRequestParameterMap();
-        
-        System.out.println("page: "+page+" size: "+size);
+	/**
+	 * Comportamentos
+	 */
+	
+	public Integer getPaginaAtual() {
+		return getColabPage().getNumber() + 1;
+	}
+	
+	public void proximo() {
+		System.out.println(colabPage.getTotalPages());
+		if(colabPage.hasNext()) {
+			colabPage = repository.findAll(colabPage.nextPageable());
+			setColabList(colabPage.getContent());
+		}
+	}
+	
+	public void anterior() {
+		if(colabPage.hasPrevious()) {
+			colabPage = repository.findAll(colabPage.previousPageable());
+			setColabList(colabPage.getContent());
+		}
+	}
+	
+	@PostConstruct
+	public void initListColaborador(){
         
 		Pageable pageable = PageRequest.of(page, size, new Sort(Direction.DESC, "id"));
-		Page<Colaborador> consulta = repository.findAll(pageable);
+		colabPage = repository.findAll(pageable);
 		
-		setColabList(consulta.getContent());
+		setColabList(colabPage.getContent());
+	}
+	
+	public void listColaborador(){
+        
+		Pageable pageable = PageRequest.of(page, size, new Sort(Direction.DESC, "id"));
+		colabPage = repository.findAll(pageable);
+		
+		setColabList(colabPage.getContent());
 	}
 	
 	public void save() {
-		//System.out.println(getVO().getNome());
 		repository.saveAndFlush(getVO());
 		setVO(new Colaborador());
+		Pageable pageable = PageRequest.of(colabPage.getNumber(), colabPage.getSize(), new Sort(Direction.DESC, "id"));
+		colabPage = repository.findAll(pageable);		
+		setColabList(colabPage.getContent());
 	}
 	
 	public void delete() {
-		//System.out.println(getVO().getNome());
 		repository.delete(getVO());
 		setVO(new Colaborador());
-		//return null;
+		Pageable pageable = PageRequest.of(colabPage.getNumber(), colabPage.getSize(), new Sort(Direction.DESC, "id"));
+		colabPage = repository.findAll(pageable);		
+		setColabList(colabPage.getContent());
 	}
 	
 	public void editar(Colaborador colaborador) {
