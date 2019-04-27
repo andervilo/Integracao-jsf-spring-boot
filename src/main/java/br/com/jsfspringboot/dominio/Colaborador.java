@@ -16,7 +16,8 @@ import org.hibernate.validator.constraints.br.CPF;
 
 @Entity
 public class Colaborador implements Serializable {
-	private static final long serialVersionUID = 1L;
+
+	private static final long serialVersionUID = -2310305476747174342L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

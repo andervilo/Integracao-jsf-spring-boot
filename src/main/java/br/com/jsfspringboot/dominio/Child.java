@@ -1,20 +1,21 @@
 package br.com.jsfspringboot.dominio;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
 //@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
 //@JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
-public class Child {
-  @Id
+public class Child implements Serializable{
+
+	private static final long serialVersionUID = 5752750385039542031L;
+	
+	@Id
   @GeneratedValue(strategy=GenerationType.IDENTITY)
   private Long id;
   private String name;
