@@ -1,10 +1,12 @@
 package br.com.jsfspringboot.jsfbean;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -28,9 +30,11 @@ public class ColaboradorBean {
 	private Colaborador VO = new Colaborador();
 	
 	private Integer page = 0;
-	private Integer size = 5;
+	private Integer size = 0;
 	private List<Colaborador> colabList;
-	Page<Colaborador> colabPage;
+	private Page<Colaborador> colabPage;
+	private String buscaNome = "";
+	private List<SelectItem> porPagina;
 
 	public Colaborador getVO() {
 		return VO;
@@ -57,6 +61,7 @@ public class ColaboradorBean {
 	}
 
 	public List<Colaborador> getColabList() {
+		teste();
 		return colabList;
 	}
 
@@ -70,12 +75,18 @@ public class ColaboradorBean {
 
 	public Page<Colaborador> getColabPage() {
 		return colabPage;
-	}
-	
-	
+	}	
 
 	public void setColabPage(Page<Colaborador> colabPage) {
 		this.colabPage = colabPage;
+	}
+
+	public String getBuscaNome() {
+		return buscaNome;
+	}
+
+	public void setBuscaNome(String buscaNome) {
+		this.buscaNome = buscaNome;
 	}
 
 	/**
@@ -89,31 +100,40 @@ public class ColaboradorBean {
 	public void proximo() {
 		System.out.println(colabPage.getTotalPages());
 		if(colabPage.hasNext()) {
-			colabPage = repository.findAll(colabPage.nextPageable());
+			colabPage = repository.findByNomeContainingOrEmailContainingAllIgnoreCase(buscaNome, buscaNome, colabPage.nextPageable());;
 			setColabList(colabPage.getContent());
 		}
 	}
 	
 	public void anterior() {
 		if(colabPage.hasPrevious()) {
-			colabPage = repository.findAll(colabPage.previousPageable());
+			colabPage = repository.findByNomeContainingOrEmailContainingAllIgnoreCase(buscaNome, buscaNome, colabPage.previousPageable());
 			setColabList(colabPage.getContent());
 		}
 	}
 	
+	public List<SelectItem> getPorPagina(){
+		porPagina = new ArrayList<SelectItem>();
+		porPagina.add(new SelectItem(new Integer(5),  " 5 Registros por página"));
+		porPagina.add(new SelectItem(new Integer(10), "10 Registros por página"));
+		porPagina.add(new SelectItem(new Integer(15), "15 Registros por página"));
+		porPagina.add(new SelectItem(new Integer(20), "20 Registros por página"));
+		return porPagina;
+	}
+	
 	@PostConstruct
 	public void initListColaborador(){
-        
+		setSize(5);
 		Pageable pageable = PageRequest.of(page, size, new Sort(Direction.DESC, "id"));
-		colabPage = repository.findAll(pageable);
-		
+		colabPage = repository.findByNomeContainingOrEmailContainingAllIgnoreCase(buscaNome, buscaNome, pageable);
+		System.out.println(getSize());
 		setColabList(colabPage.getContent());
 	}
 	
 	public void listColaborador(){
-        
+        System.out.println("chamou: "+buscaNome);
 		Pageable pageable = PageRequest.of(page, size, new Sort(Direction.DESC, "id"));
-		colabPage = repository.findAll(pageable);
+		colabPage = repository.findByNomeContainingOrEmailContainingAllIgnoreCase(buscaNome, buscaNome, pageable);
 		
 		setColabList(colabPage.getContent());
 	}

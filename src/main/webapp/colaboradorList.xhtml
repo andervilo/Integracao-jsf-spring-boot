@@ -29,7 +29,7 @@
 		<div class="container">
 			<div>
 				<div>
-					Novo Colaborador: <STRONG><a href="/logout">Sair</a></STRONG>
+					Novo Colaborador: <STRONG><a class="btn btn-danger btn-sm" href="/logout">Sair</a></STRONG>
 				</div>
 				
 					<h:form id="form">
@@ -40,22 +40,26 @@
 									styleClass="form-control" />
 							</h:panelGroup>
 		
-							<h:panelGroup layout="block" styleClass="form-group col-md-4">
+							<h:panelGroup layout="block" styleClass="form-group col-md-3">
 								<h:outputLabel for="celular" value="Celular: "
 									styleClass="control-label" />
 								<h:inputText id="celular" value="#{colaboradorBean.VO.celular}"
 									styleClass="form-control" />
 							</h:panelGroup>
 		
-							<h:panelGroup layout="block" styleClass="form-group col-md-4">
+							<h:panelGroup layout="block" styleClass="form-group col-md-3">
 								<h:outputLabel for="email" value="E-mail: "
 									styleClass="control-label" />
 								<h:inputText id="email" value="#{colaboradorBean.VO.email}"
 									styleClass="form-control" />
 							</h:panelGroup>
+							<div class="col-md-2">
+								<h:commandButton value="Salvar" action="#{colaboradorBean.save}"
+									styleClass="btn btn-primary btn-sm" />
+								<h:commandButton value="Cancelar" type="reset"
+									styleClass="btn btn-danger btn-sm" />
+							</div>
 						</div>
-						<h:commandButton value="Salvar" action="#{colaboradorBean.save}"
-							styleClass="btn btn-primary btn-large" />
 					</h:form>
 				
 			</div>
@@ -64,20 +68,22 @@
 				<h:form>
 					<div class="row">
 						<div class="col-md-3">
-							<h:selectOneMenu styleClass="form-control"
+							<h:selectOneMenu id="selectSize" styleClass="form-control"
 								value="#{colaboradorBean.size}">
-								<f:convertNumber integerOnly="true" />
-								<f:selectItem itemValue="5" itemLabel="5 Registros por página" />
-								<f:selectItem itemValue="10" itemLabel="10 Registros por página" />
-								<f:selectItem itemValue="15" itemLabel="15 Registros por página" />
-								<f:selectItem itemValue="20" itemLabel="20 Registros por página" />
+								<f:selectItems value="#{colaboradorBean.porPagina}" />
 								<f:ajax event="change"
 									listener="#{colaboradorBean.listColaborador}"
-									render="tabela:colabTable" />
+									execute="selectSize"
+									render="tabela:colabTable paginacao" />
 							</h:selectOneMenu>
 						</div>
-						<div class="col-md-9">
-							<h:inputText id="celular" a:placeholder="Digite sua pesquisa" value="" styleClass="form-control" />
+						<div class="col-md-7">
+								<h:inputText id="pesquisa" a:placeholder="Digite sua pesquisa" value="#{colaboradorBean.buscaNome}" styleClass="form-control" />									
+						</div>
+						<div class="col-md-1">							
+							<h:commandButton value="Pesquisar" styleClass="btn btn-success btn-sm" >
+								<f:ajax listener="#{colaboradorBean.listColaborador}" execute="pesquisa" render="tabela:colabTable paginacao" event="click"/>
+							</h:commandButton>
 						</div>
 					</div>
 				</h:form>
