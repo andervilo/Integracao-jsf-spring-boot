@@ -18,7 +18,7 @@ public class FakerBuildColab {
 	@Autowired
 	private ColaboradorRepository repository;
 	
-	//@PostConstruct
+	@PostConstruct
 	public void makeColaboradores() {
 		Faker faker = new Faker(new Locale("pt-BR"));
 		for(int i = 0; i <= 1000; i++ ) {
@@ -31,23 +31,8 @@ public class FakerBuildColab {
 			colab.setEmail(faker.internet().emailAddress());
 			
 			
-//			ColaboradorDTO colab = new ColaboradorDTO(
-//					faker.leagueOfLegends().champion(), 
-//					faker.lorem().sentence(3), 
-//					faker.phoneNumber().cellPhone(), 
-//					faker.address().zipCode(), 
-//					faker.lorem().sentence(3), 
-//					faker.lorem().sentence(4), 
-//					faker.number().digits(11), 
-//					faker.internet().emailAddress(), 
-//					faker.address().streetAddress(), 
-//					faker.address().streetAddressNumber(), 
-//					faker.artist().name(), 
-//					faker.job().title());
-			
-			//repository.save(colab);
+			repository.save(colab);
 		}
-		
-		//System.out.println(colab.toString()); 
+		 
 	}
 }

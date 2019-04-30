@@ -100,14 +100,14 @@ public class ColaboradorBean {
 	public void proximo() {
 		System.out.println(colabPage.getTotalPages());
 		if(colabPage.hasNext()) {
-			colabPage = repository.findByNomeContainingOrEmailContainingAllIgnoreCase(buscaNome, buscaNome, colabPage.nextPageable());;
+			colabPage = repository.findByNomeContainingOrEmailContainingOrCelularContaining(buscaNome, buscaNome, buscaNome, colabPage.nextPageable());;
 			setColabList(colabPage.getContent());
 		}
 	}
 	
 	public void anterior() {
 		if(colabPage.hasPrevious()) {
-			colabPage = repository.findByNomeContainingOrEmailContainingAllIgnoreCase(buscaNome, buscaNome, colabPage.previousPageable());
+			colabPage = repository.findByNomeContainingOrEmailContainingOrCelularContaining(buscaNome, buscaNome, buscaNome, colabPage.previousPageable());
 			setColabList(colabPage.getContent());
 		}
 	}
@@ -125,7 +125,7 @@ public class ColaboradorBean {
 	public void initListColaborador(){
 		setSize(5);
 		Pageable pageable = PageRequest.of(page, size, new Sort(Direction.DESC, "id"));
-		colabPage = repository.findByNomeContainingOrEmailContainingAllIgnoreCase(buscaNome, buscaNome, pageable);
+		colabPage = repository.findByNomeContainingOrEmailContainingOrCelularContaining(buscaNome, buscaNome, buscaNome, pageable);
 		System.out.println(getSize());
 		setColabList(colabPage.getContent());
 	}
@@ -133,7 +133,7 @@ public class ColaboradorBean {
 	public void listColaborador(){
         System.out.println("chamou: "+buscaNome);
 		Pageable pageable = PageRequest.of(page, size, new Sort(Direction.DESC, "id"));
-		colabPage = repository.findByNomeContainingOrEmailContainingAllIgnoreCase(buscaNome, buscaNome, pageable);
+		colabPage = repository.findByNomeContainingOrEmailContainingOrCelularContaining(buscaNome, buscaNome, buscaNome, pageable);
 		
 		setColabList(colabPage.getContent());
 	}
@@ -159,6 +159,10 @@ public class ColaboradorBean {
 		//repository.delete(getVO());
 		setVO(colaborador);
 		//return null;
+	}
+	
+	public void limpar() {
+		setVO(null);
 	}
 	
 	

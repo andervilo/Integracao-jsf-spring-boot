@@ -32,7 +32,7 @@
 					Novo Colaborador: <STRONG><a class="btn btn-danger btn-sm" href="/logout">Sair</a></STRONG>
 				</div>
 				
-					<h:form id="form">
+					<h:form id="form-colab">
 						<div class="row">
 							<h:panelGroup layout="block" styleClass="form-group col-md-4">
 								<h:outputLabel for="nome" value="Nome:" styleClass="control-label" />
@@ -53,11 +53,24 @@
 								<h:inputText id="email" value="#{colaboradorBean.VO.email}"
 									styleClass="form-control" />
 							</h:panelGroup>
-							<div class="col-md-2">
-								<h:commandButton value="Salvar" action="#{colaboradorBean.save}"
-									styleClass="btn btn-primary btn-sm" />
-								<h:commandButton value="Cancelar" type="reset"
-									styleClass="btn btn-danger btn-sm" />
+							<div class="col-md-2 text-md-left">
+								<div>
+									<h:commandButton value="Salvar" 
+									action="#{colaboradorBean.save}"
+									styleClass="btn btn-primary btn-sm btn-block" />
+								</div>
+								<br></br>
+								<div>								
+									<h:commandButton value="Cancelar" 
+										styleClass="btn btn-danger btn-sm btn-block" >
+											<f:ajax event="click"
+											listener="#{colaboradorBean.limpar}"
+											execute="@this"
+											render="form-colab" />
+									</h:commandButton>
+								</div>
+								
+									
 							</div>
 						</div>
 					</h:form>
@@ -80,8 +93,8 @@
 						<div class="col-md-7">
 								<h:inputText id="pesquisa" a:placeholder="Digite sua pesquisa" value="#{colaboradorBean.buscaNome}" styleClass="form-control" />									
 						</div>
-						<div class="col-md-1">							
-							<h:commandButton value="Pesquisar" styleClass="btn btn-success btn-sm" >
+						<div class="col-md-2 text-right">							
+							<h:commandButton value="Pesquisar" styleClass="btn btn-success btn-sm btn-block" >
 								<f:ajax listener="#{colaboradorBean.listColaborador}" execute="pesquisa" render="tabela:colabTable paginacao" event="click"/>
 							</h:commandButton>
 						</div>

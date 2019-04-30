@@ -13,6 +13,8 @@ public interface ColaboradorRepository extends JpaRepository<Colaborador, Intege
 	public List<Colaborador> findAllByOrderByIdDesc();
 	public List<Colaborador> findAllByOrderByIdDesc(Pageable pageable);
 //	Page<Colaborador> findByNomeIgnoreCaseContainingOrEmailIgnoreCaseContaining(String nome, String email, Pageable pageable);
-	Page<Colaborador> findByNomeContainingOrEmailContainingAllIgnoreCase(String nome, String email, Pageable pageable);
+//	Page<Colaborador> findByNomeContainingOrEmailContainingAllIgnoreCase(String nome, String email, Pageable pageable);
+	Page<Colaborador> findByNomeContainingOrEmailContainingOrCelularContaining(String nome, String email, String celular, Pageable pageable);
+	Page<Colaborador> findByNomeContainingOrEmailContainingOrCelularContaining(String parametro, Pageable pageable);
 	
 }
