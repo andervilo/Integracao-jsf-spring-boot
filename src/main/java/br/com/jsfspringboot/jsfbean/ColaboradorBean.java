@@ -123,7 +123,7 @@ public class ColaboradorBean {
 	
 	@PostConstruct
 	public void initListColaborador(){
-		setSize(5);
+		setSize(10);
 		Pageable pageable = PageRequest.of(page, size, new Sort(Direction.DESC, "id"));
 		colabPage = repository.findByNomeContainingOrEmailContainingOrCelularContaining(buscaNome, buscaNome, buscaNome, pageable);
 		System.out.println(getSize());

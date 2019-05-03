@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+
+<ui:composition template="../template/layout.xhtml">
+
+	<ui:define name="corpo">
+		<h:form>
+			<div class="row">
+				<div class="col s12 input-field">
+					<h:selectOneMenu id="selectSize" 
+						value="#{colaboradorBean.size}">
+						<f:selectItems value="#{colaboradorBean.porPagina}" />
+						<f:ajax event="change"
+							listener="#{colaboradorBean.listColaborador}"
+							execute="selectSize" render="tabela:colabTable paginacao" />
+					</h:selectOneMenu>
+				</div>
+				<div class="col-md-6">
+					<h:inputText id="pesquisa" a:placeholder="Digite sua pesquisa"
+						value="#{colaboradorBean.buscaNome}" styleClass="form-control" />
+				</div>
+				<div class="col-md-2 text-right">
+					<h:commandButton value="Pesquisar"
+						styleClass="btn btn-success btn-sm btn-block">
+						<f:ajax listener="#{colaboradorBean.listColaborador}"
+							execute="pesquisa" render="tabela:colabTable paginacao"
+							event="click" />
+					</h:commandButton>
+				</div>
+			</div>
+		</h:form>
+		<h:form id="tabela">
+			<h:dataTable styleClass="table table-striped table-hover table-sm"
+				id="colabTable" value="#{colaboradorBean.colabList}" var="item">
+				<h:column>
+					<f:facet name="header"> #ID</f:facet>
+                    #{item.id}
+                </h:column>
+				<h:column>
+					<f:facet name="header"> Nome</f:facet>
+                    #{item.nome}
+                </h:column>
+				<h:column>
+					<f:facet name="header"> Celular</f:facet>
+                    #{item.celular}
+                </h:column>
+				<h:column>
+					<f:facet name="header"> E-mail</f:facet>
+                    #{item.email}
+                </h:column>
+
+				<h:column>
+					<f:facet name="header"></f:facet>
+					<h:commandButton 
+						value="Delete"
+						onclick="if (! confirm('Deseja excluir este registro?')) return false"
+						styleClass="btn red darken-1 btn-sm" 
+						action="#{colaboradorBean.delete}">
+						<f:setPropertyActionListener target="#{colaboradorBean.VO}" value="#{item}" />
+							
+					</h:commandButton>
+				</h:column>
+				<h:column>
+					<h:commandButton value="Editar" styleClass="btn orange accent-4 btn-sm"
+						action="#{colaboradorBean.editar(item)}">
+
+					</h:commandButton>
+				</h:column>
+
+			</h:dataTable>
+		</h:form>
+
+		<div class="row">
+			<div class="col-md-2">
+				<h:form>
+					<h:commandButton value="Anterior"
+						styleClass="btn blue darken-4 btn-sm">
+						<f:ajax listener="#{colaboradorBean.anterior}" execute="@this"
+							render="tabela:colabTable paginacao" event="click" />
+					</h:commandButton>
+				</h:form>
+			</div>
+			<div class="col-md-1 text-center align-middle">
+				<h:form id="paginacao">
+							#{colaboradorBean.paginaAtual}/#{colaboradorBean.colabPage.totalPages}
+						</h:form>
+			</div>
+			<div class="col-md-2">
+				<h:form>
+					<h:commandButton value="Próximo"
+						styleClass="btn blue darken-4 btn-sm">
+						<f:ajax listener="#{colaboradorBean.proximo}" execute="@this"
+							render="tabela:colabTable paginacao" event="click" />
+					</h:commandButton>
+				</h:form>
+			</div>
+		</div>
+
+	</ui:define>
+</ui:composition>
+
+</html>

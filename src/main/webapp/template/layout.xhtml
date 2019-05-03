@@ -15,7 +15,12 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" 
 		integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" 
 		crossorigin="anonymous"/>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+	<h:outputStylesheet library="materialize" name="css/materialize.css" />
 	
+	<h:outputScript library="webjars" name="jquery/2.1.1/jquery.min.js" />
+	
+	<h:outputScript library="materialize" name="js/materialize.js" />
 	<title>Centro Alternativo de Cultura</title>
 </h:head>
 
@@ -30,7 +35,7 @@
 				style="left: 250px;">
 				<!---->
 				<div
-					class="q-toolbar row no-wrap items-center relative-position q-toolbar-inverted text-secondary">
+					class="q-toolbar row no-wrap items-center relative-position q-toolbar-inverted text-secondary" style="margin-bottom: 0px">
 					
 					<div class="q-toolbar-title">
 						Centro Alternativo de Cultura
@@ -45,11 +50,11 @@
 					class="fullscreen q-layout-backdrop q-layout-transition no-pointer-events"
 					style="background-color: rgba(0, 0, 0, 0);"></div>
 				<aside
-					class="q-layout-drawer q-layout-transition q-layout-drawer-left scroll bg-teal fixed q-layout-drawer-normal q-layout-drawer-delimiter top-padding"
+					class="q-layout-drawer q-layout-transition q-layout-drawer-left scroll fixed bg-teal q-layout-drawer-normal q-layout-drawer-delimiter top-padding"
 					style="width: 250px; transform: translateX(0px);">
 					<div class="q-list no-border q-list-link" inset-delimiter="">
 						<div class="q-list-header text-white">MENU</div>
-						<a href="#" style="">
+						<a href="/dashboard.jsf" style="text-decoration: none;">
 							<div class="q-item q-item-division relative-position">
 								<div class="q-item-side q-item-section q-item-side-left">
 									<i aria-hidden="true"
@@ -82,16 +87,20 @@
 									style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical;">Campanhas</div>
 							</div>
 						</div>
-						<div class="q-item q-item-division relative-position">
-							<div class="q-item-side q-item-section q-item-side-left">
-								<i aria-hidden="true"
-									class="q-icon fas fa-id-card q-item-icon text-white"> </i>
+						
+						<a href="/colaborador/colaborador-list.jsf" style="text-decoration: none;">
+							<div class="q-item q-item-division relative-position">
+								<div class="q-item-side q-item-section q-item-side-left">
+									<i aria-hidden="true"
+										class="q-icon fas fa-id-card q-item-icon text-white"> </i>
+								</div>
+								<div class="q-item-main q-item-section text-white">
+									<div class="q-item-label"
+										style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical;">Colaboradores</div>
+								</div>
 							</div>
-							<div class="q-item-main q-item-section text-white">
-								<div class="q-item-label"
-									style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical;">Colaboradores</div>
-							</div>
-						</div>
+						</a>
+						
 						<div class="q-item q-item-division relative-position">
 							<div class="q-item-side q-item-section q-item-side-left">
 								<i aria-hidden="true"

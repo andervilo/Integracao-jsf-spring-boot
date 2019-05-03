@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.context.annotation.Bean;
 
+import br.com.jsfspringboot.enums.interfaces.IEnumModel;
+
 public enum PermissoesEnum implements IEnumModel<Integer>{
 	CADASTRO_COLABORADOR_ACESSO(1,"CADASTRO_COLABORADOR_ACESSO","/colaborador"),
 	CADASTRO_COLABORADOR_EDICAO(2,"CADASTRO_COLABORADOR_EDICAO","/colaborador/**");

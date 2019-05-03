@@ -1,4 +1,4 @@
-package br.com.jsfspringboot.enums;
+package br.com.jsfspringboot.enums.interfaces;
 
 import java.io.Serializable;
 

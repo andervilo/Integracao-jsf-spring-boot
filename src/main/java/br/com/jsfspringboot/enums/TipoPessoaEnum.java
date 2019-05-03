@@ -1,5 +1,7 @@
 package br.com.jsfspringboot.enums;
 
+import br.com.jsfspringboot.enums.interfaces.IEnumModel;
+
 //FIXME (FASE FUTURA): Pessoa JURIDICA comentada porque o sistema só trabalha atualmente com pessoa FISICA.
 public enum TipoPessoaEnum implements IEnumModel<String> {
 	FISICA("F", "Física"),
