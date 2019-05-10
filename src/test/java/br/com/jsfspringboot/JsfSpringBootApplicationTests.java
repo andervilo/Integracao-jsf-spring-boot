@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.test.context.junit4.SpringRunner;
 
+
 import br.com.jsfspringboot.repository.ColaboradorRepository;
 
 @RunWith(SpringRunner.class)

@@ -54,24 +54,24 @@
 					<f:facet name="header"> E-mail</f:facet>
                     #{item.email}
                 </h:column>
-
+				<h:column>
+					<h:commandLink title="Editar" value="" styleClass="btn orange accent-4 btn-sm"
+						action="#{colaboradorBean.editar(item)}">
+						<i class="fa fa-edit"></i>
+					</h:commandLink>
+				</h:column>
 				<h:column>
 					<f:facet name="header"></f:facet>
-					<h:commandButton 
-						value="Delete"
+					<h:commandLink
+						title="Excluir"
 						onclick="if (! confirm('Deseja excluir este registro?')) return false"
 						styleClass="btn red darken-1 btn-sm" 
 						action="#{colaboradorBean.delete}">
 						<f:setPropertyActionListener target="#{colaboradorBean.VO}" value="#{item}" />
-							
-					</h:commandButton>
+						<i class="fa fa-trash"></i>
+					</h:commandLink>
 				</h:column>
-				<h:column>
-					<h:commandButton value="Editar" styleClass="btn orange accent-4 btn-sm"
-						action="#{colaboradorBean.editar(item)}">
-
-					</h:commandButton>
-				</h:column>
+				
 
 			</h:dataTable>
 		</h:form>
